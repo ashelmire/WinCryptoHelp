@@ -18,6 +18,7 @@ Exporting keys as SSL format is not as simple. The exported keys are in PRIVATEK
 
 The format of PUBLIC and PRIVATE KEYBLOBs are similar.
 ```
+                  BYTES
 | 0    -   3  | 4    -   7 | 8   -    ... |
 |  BLOBTYPE   |    ALG ID  | Key Data     |
 ```
@@ -55,11 +56,12 @@ modulus = (size of keylength)[::-1]
 Using the WinCrypt API for encrypted communications is more useful than file encryption, but is also more complex. Windows tries to protect the programmer from themselves by not providing any way to simply retreive the plaintext session key. CryptExportKey only allows you to retreive a SIMPLEBLOB format of the session key you've generated.
 
 ![SIMPLEBLOB](https://github.com/ashelmire/WinCryptoHelp/blob/master/rsrc/AES128_key.png)
+
 An example of the SIMPLEBLOB for an AES128 Session key can be seen in the image above.
 
 The SIMPLEBLOB format is:
-Bytes
 ```
+                                BYTES
 | 0    -   3  | 4    -   7 | 8   -    11 | 12                       -                   ... |
 |  BLOBTYPE   |    ALG ID  |             |                 Key Data                         |
 | 01 02 00 00 | 0E 66 00 00| 00 A4 00 00 | NN  ...  NN  ...  NN   ...  NN   ...   NN ... NN |
