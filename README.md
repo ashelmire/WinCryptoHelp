@@ -146,12 +146,13 @@ BYTE *CryptoHelper::SpcExportRawKeyData(HCRYPTPROV hProvider, HCRYPTKEY hKey, HC
 You would instantiate this routine as such:
 ```
 pbData = SpcExportRawKeyData(m_hCryptProv, hKey, hRSAKey, &cbKeySize);
-wprintf(L"AesKeyExport Raw 2 = \"");
+//print raw key binary
+printf("AesKeyExport Raw 2 = \"");
 for (int i=0; i < cbKeySize; i++)
 {
-  wprintf(L"%02x", pbData[i]);
+  printf("%02x", pbData[i]);
 }
-wprintf(L"\"\n\n");
+printf("\"\n\n");
 ```
 
 A toy example of using the full Windows CryptoAPI for these items can be found here. It includes a lot of over explanation of what is occuring, but I found it useful for learning the details. This example is largely based on Windows MSDN code and the code from "Secure Programming Cookbook for C and C++".
